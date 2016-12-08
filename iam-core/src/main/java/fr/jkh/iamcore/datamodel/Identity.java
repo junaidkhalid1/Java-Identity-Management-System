@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,9 +22,9 @@ import javax.persistence.Table;
 public class Identity {
 	
 	@Id
-	@Column(name="INDEX")
-	@GeneratedValue
-	long id;
+	@Column(name="ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long index;
 	
 	private String displayName;
 	private String email;
@@ -111,6 +112,18 @@ public class Identity {
 		return birthDate;
 	}
 	
+	/**
+	 * @return the index
+	 */
+	public final long getIndex() {
+		return index;
+	}
+	/**
+	 * @param index the index to set
+	 */
+	public final void setIndex(long index) {
+		this.index = index;
+	}
 	
 	
 

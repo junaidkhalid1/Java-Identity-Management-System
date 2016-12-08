@@ -21,14 +21,15 @@ import fr.jkh.iam.log.IAMLogger;
 import fr.jkh.iam.log.impl.IAMLogManager;
 import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOSaveException;
+import fr.jkh.iamcore.exception.DAOUpdateException;
 import fr.jkh.iamcore.service.dao.IdentityDAOInterface;
 
 /**
  * Servlet implementation class Login
  */
 
-@WebServlet(name = "IdentityServlet", urlPatterns = "/IdAction")
-public class IdentityServlet extends GenericSpringServlet {
+@WebServlet(name = "Update", urlPatterns = "/IdUpdate")
+public class Update extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
 
 	
@@ -40,7 +41,7 @@ public class IdentityServlet extends GenericSpringServlet {
 	/**
 	 * Default constructor.
 	 */
-	public IdentityServlet() {
+	public Update() {
 	}
 
 	/**
@@ -57,7 +58,7 @@ public class IdentityServlet extends GenericSpringServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
+		
 		Identity identity = new Identity();
 		
 		String displayName = request.getParameter("displayName");
@@ -77,8 +78,8 @@ public class IdentityServlet extends GenericSpringServlet {
 			identity.setEmail(email);
 			identity.setUid(uid);
 			identity.setBirthDate(date);
-			dao.save(identity);
-		} catch (DAOSaveException | ParseException e) {
+			dao.update(identity);
+		} catch (ParseException | DAOUpdateException e) {
 			// TODO Redirect to error page
 			e.printStackTrace();
 		}

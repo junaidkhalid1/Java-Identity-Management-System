@@ -12,22 +12,22 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">Display Name</label> 
 					<input name="displayName" type="text" class="form-control" id="exampleInputEmail1"
-						placeholder="Enter Login" />
+						placeholder="Enter Display name" />
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email</label> 
 					<input name="email" type="text" class="form-control" id="exampleInputEmail1"
-						placeholder="Enter Login" />
+						placeholder="Enter Email" />
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">UID</label> 
 					<input name="uid" type="text" class="form-control" id="exampleInputEmail1"
-						placeholder="Enter Login" />
+						placeholder="Enter UID" />
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">BirthDate</label> 
 					<input name="birthDate" type="date" class="form-control" id="exampleInputEmail1"
-						placeholder="Enter Login" />
+						placeholder="Enter Birthdate" />
 				</div>
 				
 

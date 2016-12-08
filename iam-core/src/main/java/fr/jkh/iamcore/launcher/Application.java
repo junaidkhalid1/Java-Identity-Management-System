@@ -4,6 +4,7 @@
 package fr.jkh.iamcore.launcher;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 
@@ -28,8 +29,9 @@ public class Application {
 	/**
 	 * @param args
 	 * @throws IOException
+	 * @throws SQLException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 		
 		logger.info("program started");
 		

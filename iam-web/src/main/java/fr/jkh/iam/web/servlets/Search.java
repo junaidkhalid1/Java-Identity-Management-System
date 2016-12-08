@@ -51,8 +51,7 @@ public class Search extends GenericSpringServlet {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect("search.jsp");
-		
+		response.sendRedirect("search.jsp");		
 		
 	}
 

@@ -4,10 +4,10 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <!--   <bean id="defaultUser" class="fr.tbr.iam.User">
-        <property name="firstName"><value>Thomas</value></property>
-        <property name="lastName"><value>Broussard</value></property>
-        <property name="login"><value>tbroussard</value></property>        
+ <!--   <bean id="defaultUser" class="fr.jkh.iam.User">
+        <property name="firstName"><value>Junaid</value></property>
+        <property name="lastName"><value>Khalid</value></property>
+        <property name="login"><value>jkhalid</value></property>        
     </bean> -->
     
     
@@ -32,12 +32,12 @@
         </property> 
          <property name="packagesToScan">
             <list>
-                <value>fr.tbr.iamcore.datamodel</value>
+                <value>fr.jkh.iamcore.datamodel</value>
             </list>
         </property>    
     </bean>
     
-    <bean id="hibernateDAO" class="fr.tbr.iamcore.service.dao.HibernateDAO" />
+    <bean id="hibernateDAO" class="fr.jkh.iamcore.service.dao.HibernateDAO" />
  
 
 </beans>

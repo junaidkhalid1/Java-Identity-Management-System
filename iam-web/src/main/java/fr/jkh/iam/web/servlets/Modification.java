@@ -1,11 +1,7 @@
 package fr.jkh.iam.web.servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.Collection;
 
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
@@ -21,17 +17,18 @@ import fr.jkh.iam.log.IAMLogger;
 import fr.jkh.iam.log.impl.IAMLogManager;
 import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOSaveException;
+import fr.jkh.iamcore.exception.DAOSearchException;
+import fr.jkh.iamcore.service.dao.DAODeleteException;
 import fr.jkh.iamcore.service.dao.IdentityDAOInterface;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Modification
  */
 
-@WebServlet(name = "IdentityServlet", urlPatterns = "/IdAction")
-public class IdentityServlet extends GenericSpringServlet {
+@WebServlet(name = "Modification", urlPatterns = "/IdModify")
+public class Modification extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
-
-	
+		
 	@Inject
 	IdentityDAOInterface dao;
 	
@@ -40,7 +37,7 @@ public class IdentityServlet extends GenericSpringServlet {
 	/**
 	 * Default constructor.
 	 */
-	public IdentityServlet() {
+	public Modification() {
 	}
 
 	/**
@@ -49,6 +46,7 @@ public class IdentityServlet extends GenericSpringServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 	}
 
 	/**
@@ -57,30 +55,37 @@ public class IdentityServlet extends GenericSpringServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
-		Identity identity = new Identity();
 		
-		String displayName = request.getParameter("displayName");
-		String email = request.getParameter("email");
-		String uid = request.getParameter("uid");
-		String birthDate = request.getParameter("birthDate");
-		
-		String str_date=birthDate;
-		DateFormat formatter ; 
-		Date date ; 
-		formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-		
+		String val= request.getParameter("selection");
+		if ( val != null )
+		{
+			if (request.getParameter("modification") != null) {
+			    // Invoke FirstServlet's job here.
+		response.sendRedirect("Modification.jsp");
+		logger.info("received this query :  = displayName" + val);
 		try {
-			date = formatter.parse(str_date);
+			Collection<Identity> idLists = dao.search(new Identity(val, null, null));
+			request.getSession().setAttribute("idLists", idLists);
 			
-			identity.setDisplayName(displayName);
-			identity.setEmail(email);
-			identity.setUid(uid);
-			identity.setBirthDate(date);
-			dao.save(identity);
-		} catch (DAOSaveException | ParseException e) {
-			// TODO Redirect to error page
+		} catch (DAOSearchException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		}
+		else if (request.getParameter("delete") != null)
+		{
+			try {
+				dao.delete(new Identity(val, null, null));
+			} catch (DAODeleteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}
+		else
+		{
+			response.sendRedirect("search.jsp");
 		}
 
 	}

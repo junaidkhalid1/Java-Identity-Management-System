@@ -21,6 +21,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import fr.jkh.iam.User;
 import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOSaveException;
 import fr.jkh.iamcore.exception.DAOUpdateException;
@@ -57,6 +58,15 @@ public class TestHibernate {
 		Session session = sf.openSession();
 		session.close();// TODO do not do that outside of the test case
 	}
+	
+	@Test
+	public void testHibernateSaveOrUpdateUser() {
+		User user = new User();
+		Session session = sf.openSession();
+		session.saveOrUpdate(user);
+
+		session.close();// TODO do not do that outside of the test case
+	}
 
 	@Test
 	public void testHibernateSaveOrUpdate() {
@@ -73,7 +83,7 @@ public class TestHibernate {
 	public void testHibernateAllInARow() {
 		Identity identity = new Identity();
 
-		identity.setDisplayName("Thomas" + Math.random());
+		identity.setDisplayName("Broussard" + Math.random());
 		identity.setBirthDate(new Date());
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
@@ -81,7 +91,7 @@ public class TestHibernate {
 		tx.commit();
 
 		tx = session.beginTransaction();
-		identity.setEmail("tbr@tbr.com");
+		identity.setEmail("junaid@tbr.com");
 		session.update(identity);
 		tx.commit();
 
@@ -142,10 +152,9 @@ public class TestHibernate {
 		identity.setDisplayName("Thomas" + Math.random());
 		identity.setBirthDate(new Date());
 		dao.save(identity);
-		identity.setEmail("cserr@tbr.com");
+		identity.setEmail("thomas@tbr.com");
 		dao.update(identity);
 		dao.delete(identity);
 
 	}
-
 }

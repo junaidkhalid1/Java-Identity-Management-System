@@ -5,6 +5,7 @@ package fr.jkh.iamcore.service.dao;
 
 import java.util.Collection;
 
+import fr.jkh.iam.User;
 import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOSaveException;
 import fr.jkh.iamcore.exception.DAOSearchException;
@@ -25,7 +26,6 @@ public interface IdentityDAOInterface {
 	public void save(Identity identity) throws DAOSaveException;
 
 	public Collection<Identity> search(Identity criteria)  throws DAOSearchException ;
-
 
 	public void update(Identity identityToUpdate)  throws  DAOUpdateException;
 

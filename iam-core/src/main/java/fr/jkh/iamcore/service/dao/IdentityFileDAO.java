@@ -102,9 +102,6 @@ public class IdentityFileDAO {
 			}
 	
 		}
-		
-		
-		
 		return identities;
 	
 	}

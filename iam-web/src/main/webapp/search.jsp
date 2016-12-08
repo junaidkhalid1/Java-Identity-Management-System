@@ -51,7 +51,7 @@
 	<div class="container">
 		<h3 class="text-info">Search Results</h3>
 
-		<form class="form-horizontal">
+		<form class="form-horizontal"  method="post" action="IdModify">
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
@@ -72,10 +72,10 @@
 					   <% } else{
 					   for (Identity id : idList){ %>
 						<tr>
-							<td><input name="selection" type="radio" value="<%=id.getUid()%>"/></td>
+							<td><input name="selection" type="radio" value="<%=id.getDisplayName()%>"/></td>
 							<td><%=id.getUid() %></td>
 							<td><%=id.getDisplayName() %></td>
-							<td><%=id.getEmail()%></td>
+							<td><%=id.getEmail() %></td>
 						</tr>
                         <%} 
                         }%>
@@ -85,8 +85,9 @@
 			</div>
 			<div class="form-group">
 				<div class=" col-sm-offset-2 col-sm-10 text-right">
-					<button type="submit" class="btn btn-primary">Modify</button>
-					<button type="submit" class="btn btn-primary">Delete</button>
+					
+					<button type="submit" class="btn btn-primary" value="Modify" name="modification">Modify</button>
+					<button type="submit" class="btn btn-primary" value="Delete" name="delete">Delete</button>
 					<button type="submit" class="btn btn-default">Cancel</button>
 				</div>
 			</div>

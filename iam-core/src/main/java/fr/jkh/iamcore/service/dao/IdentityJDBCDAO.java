@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.jkh.iam.User;
 import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOExceptionsMessages;
 import fr.jkh.iamcore.exception.DAOInitializationException;
