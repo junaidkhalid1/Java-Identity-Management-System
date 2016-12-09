@@ -14,7 +14,8 @@ import javax.persistence.Table;
 
 /**
  * @author Junaid KHALID
- *
+ * Class to define Identity attributes
+ * Mapping Identity attributes in the DB
  */
 
 @Entity

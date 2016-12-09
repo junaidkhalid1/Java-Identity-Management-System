@@ -54,6 +54,9 @@ public class Update extends GenericSpringServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      Updating identities
+	 *      By providing displayName, email, uid, birthDate
+	 *      Parsing birthDate
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

@@ -51,6 +51,8 @@ public class Modification extends GenericSpringServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      getting user selection parameter
+	 *      passing to Update form
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

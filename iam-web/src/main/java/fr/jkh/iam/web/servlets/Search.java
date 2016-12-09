@@ -38,6 +38,7 @@ public class Search extends GenericSpringServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * passing displayName and email to search the identities
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String displayName = request.getParameter("displayName");

@@ -13,7 +13,8 @@ import javax.persistence.Table;
 
 /**
  * @author Junaid KHALID
- *
+ * Class to define User attributes
+ * Mapping User attributes in the DB
  */
 
 @Entity

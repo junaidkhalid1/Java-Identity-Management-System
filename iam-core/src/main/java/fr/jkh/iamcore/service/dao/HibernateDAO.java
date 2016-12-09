@@ -21,7 +21,8 @@ import fr.jkh.iamcore.exception.DAOSearchException;
 
 /**
  * @author Junaid KHALID
- *
+ * HibernateDAO is handling all the database related queries
+ * For both classes Users and Identities
  */
 public class HibernateDAO implements IdentityDAOInterface {
 	
@@ -46,6 +47,8 @@ public class HibernateDAO implements IdentityDAOInterface {
 
 	/**
 	 * @param identity
+	 * update identity.displayName, identity.uid, identity.birthDate
+	 * By using identity.email
 	 */
 	@Override
 	public void update(Identity identity) {
@@ -70,6 +73,8 @@ public class HibernateDAO implements IdentityDAOInterface {
 
 	/**
 	 * @param identity
+	 * Delete identity
+	 * By using identity.displayName
 	 */
 	@Override
 	public void delete(Identity identity) {		
@@ -103,7 +108,7 @@ public class HibernateDAO implements IdentityDAOInterface {
 	
 	/**
 	 * @param user
-	 * To register user
+	 * Registering user
 	 */
 	@Override
 	public void create(User user) {
@@ -118,7 +123,8 @@ public class HibernateDAO implements IdentityDAOInterface {
 	
 	/**
 	 * @param user
-	 * To delete user
+	 * Delete user
+	 * By using user.username
 	 */
 	@Override
 	public void deluser(User user) {		
@@ -139,7 +145,8 @@ public class HibernateDAO implements IdentityDAOInterface {
 	
 	/**
 	 * @param user
-	 * To update user
+	 * Update user user.username
+	 * By using user.password
 	 */
 	@Override
 	public void updateuser(User user) {
@@ -162,6 +169,8 @@ public class HibernateDAO implements IdentityDAOInterface {
 	/**
 	 * @param user
 	 * To check user if it exist already in db or not
+	 * By selecting username
+	 * Matching recived username value with the value in username in db
 	 * @return List
 	 */
 	@Override	
@@ -184,6 +193,8 @@ public class HibernateDAO implements IdentityDAOInterface {
 	/**
 	 * @param user
 	 * To check user login if username and password matches
+	 * Selecting username
+	 * if match with db values of username and password
 	 * @return List
 	 */
 	@Override

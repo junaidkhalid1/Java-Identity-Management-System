@@ -43,6 +43,8 @@ public class Registration extends GenericSpringServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Checking if parameters are not null or empty
+	 * Checking if user already registered in DB.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

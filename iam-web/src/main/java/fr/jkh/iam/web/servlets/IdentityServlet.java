@@ -54,6 +54,8 @@ public class IdentityServlet extends GenericSpringServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      Creating identity in DB
+	 *      Parsing format of date
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
