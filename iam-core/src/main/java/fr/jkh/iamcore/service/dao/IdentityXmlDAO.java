@@ -9,9 +9,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -26,7 +24,6 @@ import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOExceptionsMessages;
 import fr.jkh.iamcore.exception.DAOInitializationException;
 import fr.jkh.iamcore.service.matching.Match;
-import fr.jkh.iamcore.service.matching.impl.ContainsMatch;
 import fr.jkh.iamcore.service.matching.impl.EqualsMatch;
 
 

@@ -1,11 +1,7 @@
-/**
- * 
- */
 package fr.jkh.junit.tests;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,7 +17,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import fr.jkh.iamcore.datamodel.Identity;
+import fr.jkh.iam.user.User;
 import fr.jkh.iamcore.exception.DAOSaveException;
 import fr.jkh.iamcore.exception.DAOUpdateException;
 import fr.jkh.iamcore.service.dao.DAODeleteException;
@@ -33,7 +29,7 @@ import fr.jkh.iamcore.service.dao.IdentityDAOInterface;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "/applicationContext.xml")
-public class TestHibernate {
+public class TestHibernateUser {
 
 	@Inject
 	DataSource ds;
@@ -60,45 +56,35 @@ public class TestHibernate {
 	
 	@Test
 	public void testHibernateSaveOrUpdateUser() {
+		User user = new User();
+		user.setusername("Junaid");
 		Session session = sf.openSession();
-
-		session.close();// TODO do not do that outside of the test case
-	}
-
-	@Test
-	public void testHibernateSaveOrUpdate() {
-		Identity identity = new Identity();
-		identity.setDisplayName("Thomas");
-		identity.setBirthDate(new Date());
-		Session session = sf.openSession();
-		session.saveOrUpdate(identity);
+		session.saveOrUpdate(user);
 
 		session.close();// TODO do not do that outside of the test case
 	}
 
 	@Test
 	public void testHibernateAllInARow() {
-		Identity identity = new Identity();
-
-		identity.setDisplayName("Broussard" + Math.random());
-		identity.setBirthDate(new Date());
+		User user = new User();
+		user.setusername("Khan" + Math.random());;
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
-		session.saveOrUpdate(identity);
+		session.saveOrUpdate(user);
+		tx.commit();
+
+		tx = session.beginTransaction();;
+		user.setpassword("test");
+		session.update(user);
 		tx.commit();
 
 		tx = session.beginTransaction();
-		identity.setEmail("junaid@tbr.com");
-		session.update(identity);
-		tx.commit();
-
-		tx = session.beginTransaction();
-		session.delete(identity);
+		session.delete(user);
 		tx.commit();
 
 		session.close();// TODO do not do that outside of the test case
 	}
-
+	
 	/**
 	 * <pre>
 	 * "Given two identities in the database with one which the displayName is Clement"
@@ -110,49 +96,57 @@ public class TestHibernate {
 	 * @throws DAODeleteException
 	 */
 	@Test
-	public void testHibernateQueryLanguage() throws DAOSaveException, DAODeleteException {
-		List<?> list = null;
+	public void testUserHibernateQueryLanguage() throws DAOSaveException, DAODeleteException {
+		List<?> userlist = null;
 		Session session = sf.openSession();
 		try {
-			// We have to build the initial state : two identities
-			// "Given two identities in the database with one which the
-			// displayName is Clement"
-			dao.save(new Identity("Clement", "clement@epita.fr", "123"));
-			dao.save(new Identity("Quentin", "quentin@epita.fr", "456"));
-
-			// "When we execute the query passing the Clement criteria as the
-			// displayName"
-			String hqlString = "from Identity as identity where identity.displayName = :dName";
 			
-			Query query = session.createQuery(hqlString);
+			dao.create(new User("Thomas", "Broussard"));
 			
-			query.setParameter("dName", "Clement");
-			list = query.list();
-
-			// "Then we should have only one result"
-			System.out.println(list);
-			Assert.assertEquals(1, list.size());
+			String HqlUser = "from User as user where user.username = :username";
+			Query queryuser = session.createQuery(HqlUser);
+			
+			queryuser.setParameter("username", "Thomas");
+			userlist = queryuser.list();
+			
+			System.out.println(userlist);
+			Assert.assertEquals(1, userlist.size());
 		} finally {
-			if (list != null) {
+			if (userlist != null) {
 				// Finally, leave the database empty
-				for (Object obj : list) {
-					Identity identity = (Identity) obj;
-					dao.delete(identity);
+				for (Object obj : userlist) {
+					User user = (User) obj;
+					dao.deluser(user);
 				}
 			}
 			session.close();// TODO do not do that outside of the test case
 		}
 	}
 
-	@Test
-	public void testHibernateDAO() throws DAOSaveException, DAOUpdateException, DAODeleteException {
-		Identity identity = new Identity();
-		identity.setDisplayName("Thomas" + Math.random());
-		identity.setBirthDate(new Date());
-		dao.save(identity);
-		identity.setEmail("thomas@tbr.com");
-		dao.update(identity);
-		dao.delete(identity);
+@Test
+public void testHibernateUser() throws DAOSaveException, DAOUpdateException, DAODeleteException {
+	User user = new User();
+	user.setusername("Thomas" + Math.random());
+	user.setpassword("pass");
+	dao.create(user);
+	dao.updateuser(user);
+	dao.deluser(user);
 
+	}
+
+@Test
+public void testHibernateuserLogin() {
+	User user = new User();
+	user.setusername("check");
+	user.setpassword("check");
+	dao.userLogin(user);
+
+	}
+
+@Test
+public void testHibernateuserUserExist() {
+	User user = new User();
+	user.setusername("check");
+	dao.userExistsinDB(user);
 	}
 }

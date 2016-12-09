@@ -16,7 +16,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import fr.jkh.iam.log.IAMLogger;
 import fr.jkh.iam.log.impl.IAMLogManager;
 import fr.jkh.iamcore.datamodel.Identity;
-import fr.jkh.iamcore.exception.DAOSaveException;
 import fr.jkh.iamcore.exception.DAOSearchException;
 import fr.jkh.iamcore.service.dao.DAODeleteException;
 import fr.jkh.iamcore.service.dao.IdentityDAOInterface;
@@ -61,7 +60,7 @@ public class Modification extends GenericSpringServlet {
 		{
 			if (request.getParameter("modification") != null) {
 			    // Invoke FirstServlet's job here.
-		response.sendRedirect("Modification.jsp");
+		response.sendRedirect("modification.jsp");
 		logger.info("received this query :  = displayName" + val);
 		try {
 			Collection<Identity> idLists = dao.search(new Identity(val, null, null));
@@ -77,6 +76,7 @@ public class Modification extends GenericSpringServlet {
 		{
 			try {
 				dao.delete(new Identity(val, null, null));
+				response.sendRedirect("success.jsp");
 			} catch (DAODeleteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,7 +87,7 @@ public class Modification extends GenericSpringServlet {
 		{
 			response.sendRedirect("search.jsp");
 		}
-
+		
 	}
 
 	/*

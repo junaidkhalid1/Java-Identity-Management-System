@@ -1,6 +1,7 @@
 package fr.jkh.iam.web.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -9,32 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.jkh.iam.User;
 import fr.jkh.iam.log.IAMLogger;
 import fr.jkh.iam.log.impl.IAMLogManager;
+import fr.jkh.iam.user.User;
 import fr.jkh.iamcore.exception.DAOSaveException;
-import fr.jkh.iamcore.service.authentication.AuthenticationService;
 import fr.jkh.iamcore.service.dao.IdentityDAOInterface;
 
 /**
  * Servlet implementation class Registration
  */
 
-//Test Commit again
-
-@WebServlet(name="Register", urlPatterns="/Register")
-public class registration extends GenericSpringServlet {
+@WebServlet(name="Registration", urlPatterns="/Register")
+public class Registration extends GenericSpringServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
 	IdentityDAOInterface dao;
 	
-	IAMLogger logger = IAMLogManager.getIAMLogger(Login.class);
+	IAMLogger logger = IAMLogManager.getIAMLogger(Registration.class);
 
     /**
      * Default constructor. 
      */
-    public registration() {
+    public Registration() {
     }
 
 	/**
@@ -47,22 +45,33 @@ public class registration extends GenericSpringServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		
-		logger.debug(username);
-		logger.debug(password);
-		
+
 		User user = new User();
-//		user.setUsername(username);
-//		user.setPassword(password);
-//		try {
-////			dao.create(user);
-//			response.sendRedirect("login.jsp");
-//		} catch (DAOSaveException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		
+		String usernames = request.getParameter("username");
+		String passwords = request.getParameter("password");
+		
+		logger.debug("value:" +usernames);
+		logger.debug("value:" +passwords);
+		
+		if ( usernames != "" && passwords != "") {
+		
+		user.setusername(usernames);
+		user.setpassword(passwords);
+		
+		List l = dao.userExistsinDB(user);
+		
+		if (l.toString().equals("[true]"))
+		{
+		response.sendRedirect("reconnect.jsp");}
+		else {try {
+			dao.create(user);
+		} catch (DAOSaveException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}response.sendRedirect("login.jsp");}
+	} else {response.sendRedirect("reconnect.jsp");}		
+	
 	}
 
 }

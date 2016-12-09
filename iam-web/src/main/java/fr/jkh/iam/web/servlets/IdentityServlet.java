@@ -78,6 +78,7 @@ public class IdentityServlet extends GenericSpringServlet {
 			identity.setUid(uid);
 			identity.setBirthDate(date);
 			dao.save(identity);
+			response.sendRedirect("success.jsp");
 		} catch (DAOSaveException | ParseException e) {
 			// TODO Redirect to error page
 			e.printStackTrace();

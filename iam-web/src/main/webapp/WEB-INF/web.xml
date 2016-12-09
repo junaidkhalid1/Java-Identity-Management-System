@@ -8,14 +8,15 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<servlet>
-		<servlet-name>Login</servlet-name>
-		<display-name>Login</display-name>
+		<servlet-name>Registration</servlet-name>
+		<display-name>Registration</display-name>
 		<description></description>
-		<servlet-class>fr.jkh.iam.web.servlets.Login</servlet-class>
+		<servlet-class>fr.jkh.iam.web.servlets.Registration</servlet-class>
 	</servlet>
+	
 	<servlet-mapping>
-		<servlet-name>Login</servlet-name>
-		<url-pattern>/Login</url-pattern>
+		<servlet-name>Registration</servlet-name>
+		<url-pattern>/Register</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.jkh.iam.User;
+import fr.jkh.iam.user.User;
 import fr.jkh.iamcore.datamodel.Identity;
 import fr.jkh.iamcore.exception.DAOExceptionsMessages;
 import fr.jkh.iamcore.exception.DAOInitializationException;
@@ -172,6 +172,37 @@ public class IdentityJDBCDAO implements IdentityDAOInterface{
 			re.initCause(e);
 			throw re;
 		}
+	}
+
+	@Override
+	public void create(User user) throws DAOSaveException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deluser(User user) throws DAODeleteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateuser(User user) throws DAOUpdateException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List userExistsinDB(User user) {
+		return null;
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List userLogin(User user) {
+		return null;
+		// TODO Auto-generated method stub
+		
 	}
 
 	// insert into "TOM"."IDENTITIES" ("IDENTITY_DISPLAYNAME", "IDENTITY_EMAIL")

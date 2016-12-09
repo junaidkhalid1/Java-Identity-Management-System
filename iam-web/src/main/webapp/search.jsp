@@ -15,11 +15,16 @@
 </head>
 
 <body>
-
+<div class="container">
+		<div>
+			<div class="jumbotron">
+				<div class="container">
+					<h1 class="text-info">Identity Search</h1>
+					<a href="welcome.jsp">back</a>
+				</div>
+			</div>
 
 	<div class="container">
-		<h2 class="text-info">Identity Search</h2>
-		<a href="#">&lt;&lt; back</a>
 
 		<h3 class="text-info">Search Criteria</h3>
 	</div>
@@ -27,7 +32,7 @@
 
 	<form class="form-horizontal" role="form" method="GET" action="Search">
 		<div class="form-group">
-			<label for="displayName" class="col-sm-2 control-label"></label>
+			<label for="displayName" class="col-sm-2 control-label">Display Name</label>
 
 			<div class="col-sm-10">
 				<input name="displayName" type="text" class="form-control" id="displayName"
@@ -93,5 +98,7 @@
 			</div>
 		</form>
 	</div>
+	</div>
+</div>
 </body>
 </html>

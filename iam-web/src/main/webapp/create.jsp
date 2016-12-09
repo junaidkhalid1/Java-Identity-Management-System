@@ -5,7 +5,14 @@
 </head>
 
 <body>
-    <h1>Identity Creation</h1>
+<div class="container">
+		<div>
+			<div class="jumbotron">
+				<div class="container">
+					<h1 class="text-info">Identity Creation</h1>
+					<a href="welcome.jsp">back</a>
+				</div>
+			</div>
 	<div class="container">
 		<div xmlns="http://www.w3.org/1999/xhtml" class="bs-example">
 			<form role="form" method="post" action="IdAction">
@@ -27,7 +34,7 @@
 				<div class="form-group">
 					<label for="exampleInputEmail1">BirthDate</label> 
 					<input name="birthDate" type="date" class="form-control" id="exampleInputEmail1"
-						placeholder="Enter Birthdate" />
+						placeholder="Enter Birthdate in this format-> yyyy-MM-dd" />
 				</div>
 				
 
@@ -35,5 +42,7 @@
 			</form>
 		</div>
 	</div>
+	</div>
+</div>
 </body>
 </html>

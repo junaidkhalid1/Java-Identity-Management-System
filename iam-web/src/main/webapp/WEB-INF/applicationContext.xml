@@ -27,6 +27,7 @@
          <property name="packagesToScan">
             <list>
                 <value>fr.jkh.iamcore.datamodel</value>
+                <value>fr.jkh.iam.user</value>
             </list>
         </property>    
     </bean>

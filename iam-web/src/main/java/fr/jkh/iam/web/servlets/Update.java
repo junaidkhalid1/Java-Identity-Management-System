@@ -20,12 +20,11 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import fr.jkh.iam.log.IAMLogger;
 import fr.jkh.iam.log.impl.IAMLogManager;
 import fr.jkh.iamcore.datamodel.Identity;
-import fr.jkh.iamcore.exception.DAOSaveException;
 import fr.jkh.iamcore.exception.DAOUpdateException;
 import fr.jkh.iamcore.service.dao.IdentityDAOInterface;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Update
  */
 
 @WebServlet(name = "Update", urlPatterns = "/IdUpdate")
@@ -79,6 +78,7 @@ public class Update extends GenericSpringServlet {
 			identity.setUid(uid);
 			identity.setBirthDate(date);
 			dao.update(identity);
+			response.sendRedirect("success.jsp");
 		} catch (ParseException | DAOUpdateException e) {
 			// TODO Redirect to error page
 			e.printStackTrace();
