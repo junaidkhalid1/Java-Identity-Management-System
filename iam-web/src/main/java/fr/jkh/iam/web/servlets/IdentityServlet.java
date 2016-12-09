@@ -67,6 +67,9 @@ public class IdentityServlet extends GenericSpringServlet {
 		String uid = request.getParameter("uid");
 		String birthDate = request.getParameter("birthDate");
 		
+		if (!displayName.isEmpty() && !email.isEmpty() && 
+				!uid.isEmpty() && !birthDate.isEmpty() ) {
+		
 		String str_date=birthDate;
 		DateFormat formatter ; 
 		Date date ; 
@@ -85,6 +88,8 @@ public class IdentityServlet extends GenericSpringServlet {
 			// TODO Redirect to error page
 			e.printStackTrace();
 		}
+		
+		} else {response.sendRedirect("identityempty.jsp");}
 
 	}
 

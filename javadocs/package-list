@@ -1,0 +1,12 @@
+fr.jkh.iam.log
+fr.jkh.iam.log.impl
+fr.jkh.iam.user
+fr.jkh.iam.web.servlets
+fr.jkh.iamcore.datamodel
+fr.jkh.iamcore.exception
+fr.jkh.iamcore.launcher
+fr.jkh.iamcore.service.authentication
+fr.jkh.iamcore.service.dao
+fr.jkh.iamcore.service.matching
+fr.jkh.iamcore.service.matching.impl
+fr.jkh.junit.tests

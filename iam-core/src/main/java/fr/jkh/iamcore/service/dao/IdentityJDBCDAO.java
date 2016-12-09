@@ -89,7 +89,7 @@ public class IdentityJDBCDAO implements IdentityDAOInterface{
 			}
 
 		} catch (SQLException e) {
-			DAOSearchException searchException = new DAOSearchException();
+			DAOSearchException searchException = new DAOSearchException(null);
 			searchException.initCause(e);
 			throw searchException;
 		}
@@ -141,7 +141,7 @@ public class IdentityJDBCDAO implements IdentityDAOInterface{
 			prepareStatement.setString(3, identity.getUid());
 			prepareStatement.execute();
 		} catch (SQLException e) {
-			DAOUpdateException due = new DAOUpdateException();
+			DAOUpdateException due = new DAOUpdateException(null);
 			due.initCause(e);
 			throw due;
 		}
