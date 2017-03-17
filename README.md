@@ -1,1 +1,11 @@
-# Junaid_KHALID_2016s2advanced
+# Java Final Project
+
+# Stack
+
+- Maven
+- Spring Framweok
+- Hibernate Framewrok
+- JUnit
+- log4j
+
+
