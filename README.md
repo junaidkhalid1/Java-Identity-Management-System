@@ -7,5 +7,7 @@
 - Hibernate Framewrok
 - JUnit
 - log4j
+- JSP
+- Servlet
 
 
